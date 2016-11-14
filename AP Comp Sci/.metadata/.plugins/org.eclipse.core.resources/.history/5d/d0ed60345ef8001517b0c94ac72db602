@@ -1,0 +1,41 @@
+
+public class User {
+
+	public static void main(String[] args) {
+		Sorts hoi = new Sorts();
+		
+		int[] selTest = new int[6];
+		for(int i=0;i<6;i++){selTest[i] = (int)(Math.random()*100);}
+		System.out.println("Selection Sort:");
+		System.out.print("Original list: ");
+		for(int i=0;i<6;i++){System.out.print(selTest[i]+" ");}
+		System.out.print("Sorted list: ");
+		selTest = hoi.selSort(selTest);
+		for(int i=0;i<6;i++){System.out.print(selTest[i]+" ");}
+		
+		for(int i=0;i<6;i++){selTest[i] = (int)(Math.random()*100);}
+		System.out.println("\nInsertion Sort:");
+		System.out.print("Original list: ");
+		for(int i=0;i<6;i++){System.out.print(selTest[i]+" ");}
+		System.out.print("Sorted list: ");
+		selTest = hoi.insSort(selTest);
+		for(int i=0;i<6;i++){System.out.print(selTest[i]+" ");}
+		
+		for(int i=0;i<6;i++){selTest[i] = (int)(Math.random()*100);}
+		System.out.println("\nMerge Sort:");
+		System.out.print("Original list: ");
+		for(int i=0;i<6;i++){System.out.print(selTest[i]+" ");}
+		System.out.print("Sorted list: ");
+		selTest = hoi.merSort(selTest);
+		for(int i=0;i<6;i++){System.out.print(selTest[i]+" ");}
+		
+		for(int i=0;i<6;i++){selTest[i] = (int)(Math.random()*100);}
+		System.out.println("\nQuick Sort:");
+		System.out.print("Original list: ");
+		for(int i=0;i<6;i++){System.out.print(selTest[i]+" ");}
+		System.out.print("Sorted list: ");
+		selTest = hoi.quiSort(selTest);
+		for(int i=0;i<6;i++){System.out.print(selTest[i]+" ");}
+	}
+
+}

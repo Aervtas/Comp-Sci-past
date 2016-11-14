@@ -1,0 +1,72 @@
+
+public class Sorts {
+	
+	public int[] selSort(int[] arr){
+		
+		for(int i=arr.length-1; i>=0; i--){	//count down
+			//find largest number
+			int k = arr[i], place = i;
+			for(int j=i; j>=0; j--){
+				if(k < arr[j]){
+					k = arr[j];
+					place = j;
+				}
+			}
+			//swap number placement
+			int temp = arr[i];
+			arr[i] = k;
+			arr[place] = temp;
+		}
+		return arr;
+	}
+	
+	public int[] insSort(int[] arr){
+		
+		//increment through all values of array
+		for(int i=1; i<arr.length; i++){
+			//save next element
+			int k = arr[i], j = i;
+			//shift all values right
+			while(j>0 && k<arr[j-1]){
+				arr[j] = arr[j-1];
+				j--;
+			}
+			//input
+			arr[j] = k;
+		}
+		return arr;
+	}
+	
+	public int[] merSort(int[] arr){
+		//return if 1
+		if(arr.length==1)
+			return arr;
+		//Split the array into half
+		int[] wat = new int[arr.length/2];
+		int[] wut = new int[arr.length/2];
+		for(int i=0; i<arr.length/2;i++){
+			wat[i] = arr[i];
+			wut[i] = arr[i+arr.length/2];
+		}
+		return merge(merSort(wat), merSort(wut));
+	}
+	
+	private int[] merge(int[] x1, int[] x2){
+		//initialize sorted array
+		int[] arr = new int[x1.length+x2.length];
+		int i=x1.length-1
+				, j=x2.length-1;
+		//run through both arrays
+		for(int k=x1.length+x2.length-2; k>=0; k--){
+			if(x1[i] > x2[j]){
+				arr[k] = x1[i];
+				i--;
+			}
+			else if(x1[i] < x2[j]){
+				arr[k] = x2[j];
+				j--;
+			}
+		}
+		return arr;
+	}
+}

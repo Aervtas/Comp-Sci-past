@@ -1,0 +1,33 @@
+
+public class DartPlayer {
+	String player="";
+	private int score;
+	
+	DartPlayer(String name){
+		player = name;
+	}
+	
+	public int howManyDarts(){
+		
+	}
+	
+	public int score(){
+		
+	}
+	
+	public int dartsRemaining(int throwNumber, int nuimDarts){
+		
+	}
+	
+	public void whoWon(int points1, int points2, String name1, String name2){
+		
+	}
+	
+	public int rollDice(){
+		int num;
+		
+		num = (int)(Math.random()+(100/6.0)/100)*6;
+		
+		return num;
+	}
+}

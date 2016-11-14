@@ -1,0 +1,221 @@
+import java.util.ArrayList;
+
+public class SortedWordList {
+
+	ArrayList<String> list;
+
+	public SortedWordList(int i) {
+		list = new ArrayList<>(i);
+	}
+
+	public SortedWordList() {
+		list = new ArrayList<>();
+	}
+
+	public boolean add(String string) {
+		if(contains(string)){
+			return false;
+		}
+		if(list.size()==0){
+			return list.add(string);
+		}
+		int z=0;
+		while(z<list.size()){
+			if(list.get(z).compareTo(string)>0){
+				list.add(z, string);
+				return true;
+			}
+			z++;
+		}
+		return list.add(string);
+	}
+
+	public void add(int i, String string) {
+		if(list.size()<i)
+			throw new IllegalArgumentException("word="+string+" i="+i);
+
+		if(i == list.size() && list.get(i-1).compareTo(string)<0)
+			add(string);
+		else if(i>=1 && list.get(i-1).compareTo(string)<0 && list.get(i).compareTo(string)>0)
+			list.add(i, string);
+		else if(i==0 && list.get(i).compareTo(string)>0)
+			list.add(i, string);
+		else
+			throw new IllegalArgumentException("word="+string+" i="+i);
+	}
+
+	public String set(int i, String string) {
+		if(list.size()<=i)
+			throw new IllegalArgumentException("word="+string+" i="+i);
+
+		String prev = string;
+
+		if(i==0 && list.get(i).compareTo(string)<0)
+			prev = list.set(i, string);
+		else if(list.get(i-1).compareTo(string)<0 && list.get(i+1).compareTo(string)>0){
+			prev = list.set(i, string);
+		}
+		else if(contains(string))
+			prev = string;
+		else
+			throw new IllegalArgumentException("word="+string+" i="+i);
+		return prev;
+	}
+
+	public boolean contains(String string) {
+		if(list.size()==0)
+			return false;
+		if(list.size()==1)
+			return string.equals(list.get(0));
+
+		int begin=0, end=list.size(), mid=(int)((begin+end)/2+.5), t=0;
+		while(t==0){
+			//search half the list
+			for(int i=begin; i<mid; i++)
+				if(list.get(i).equals(string))
+					return true;
+			begin=mid;
+			mid=(int)((begin+end)/2+.5);
+			if(begin>=mid)
+				t=1;
+		}
+		return false;
+	}
+
+	public int indexOf(String string) {
+		if(!contains(string))
+			return -1;
+		if(list.size()==1)
+			return 1;
+		int begin=0, end=list.size(), mid=(begin+end)/2, t=0;
+		while(t==0){
+			//search half the list
+			for(int i=begin; i<=mid; i++)
+				if(list.get(i).equals(string)){
+					return i;
+				}
+			begin=mid;
+			mid=(begin+end)/2;
+			if(begin>=mid)
+				t=1;
+		}
+		return -1;
+	}
+
+
+
+	public String toString(){
+		return list.toString();
+	}
+
+
+
+
+
+
+	/*
+	private ArrayList<String> sorta;
+
+	public SortedWordList(){						//done
+		sorta = new ArrayList<>();
+	}
+
+	public SortedWordList(int x){					//done
+		sorta = new ArrayList<>(x);
+	}
+
+	public int indexOf(String word){
+		word.toLowerCase();
+		int begin=0, end = sorta.size()-1, index=-1;
+		boolean b = true;
+		while(b){
+			int temp = (begin+end)/2;
+
+			for(int i=begin; i<=temp; i++){
+				if(word.equals(sorta.get(i))){
+					index=i;
+					b=false;
+				}
+			}
+			begin = temp;
+			if(temp >= end || begin >= end)
+				break;
+		}
+		return index;
+	}
+
+	public boolean contains(String word){
+		word.toLowerCase();
+		if(sorta.size()==0)
+			return false;
+		int begin=0, end = sorta.size()-1, index=-1;
+		boolean b = true;
+		while(b){
+			int temp = (begin+end)/2;
+
+			for(int i=begin; i<=temp; i++){
+				if(word.equals(sorta.get(i))){
+					return true;
+				}
+			}
+			begin = temp;
+			if(temp >= end || begin >= end)
+				break;
+		}
+		return false;
+	}
+
+	public String set(int i, String word){
+		word.toLowerCase();
+		if((word.compareTo(sorta.get(i-1)) > 0) && !(word.equals(sorta.get(i-1))))
+			if((word.compareTo(sorta.get(i+1)) < 0) && !(word.equals(sorta.get(i+1))))
+				sorta.set(i, word);
+		throw new IllegalArgumentException("word="+word+" i="+i);
+	}
+
+	public void add(int i, String word){
+		word.toLowerCase();
+		if((word.compareTo(sorta.get(i-1)) > 0) && !(word.equals(sorta.get(i-1))))
+			if((word.compareTo(sorta.get(i)) < 0) && !(word.equals(sorta.get(i))))
+				sorta.add(i, word);
+		throw new IllegalArgumentException("word="+word+" i="+i);
+	}
+
+	public boolean add(String word){
+		word.toLowerCase();
+		if(contains(word))
+			return false;
+		if(sorta.size()==0)
+			sorta.add(word);
+		int begin=0, end = sorta.size();/*
+		while(sorta.get(begin).compareTo(word)<0){
+			begin++;
+		}
+		sorta.add(begin, word);
+
+	boolean b = true;
+		if(end==-1){
+			sorta.add(word);
+			return true;
+		}
+		while(b){
+			int temp = (begin+end)/2;
+
+			for(int i=begin; i<=temp; i++){
+				if((word.compareTo(sorta.get(i-1)) > 0) && (word.compareTo(sorta.get(i)) < 0)){
+					sorta.add(i, word);
+					b=false;
+				}
+			}
+			begin = temp;
+			if(temp >= end || begin >= end){
+				sorta.add(word);
+				break;
+			}
+			return true;
+		}
+		return b;
+
+	}
+	 */
+}

@@ -1,0 +1,71 @@
+import java.util.Scanner;
+
+public class DartPlayerTester {
+
+	static Scanner sc = new Scanner(System.in);
+	
+	public static void main(String[] args) {
+		
+		String name1="", name2="";
+		int playAgain=0;
+		do{
+		int darts, throwNum1=0, throwNum2=0, score1=0, score2=0, a, b;
+		DartPlayer hoi;
+		DartPlayer hoi2;
+		
+		System.out.print("Enter the name of the first player: ");
+		name1 = sc.nextLine();
+		System.out.print("Enter the name of the second player: ");
+		name2 = sc.nextLine();
+		hoi = new DartPlayer(name1);
+		hoi2 = new DartPlayer(name2);
+		darts = hoi.howManyDarts();
+		System.out.println(darts+" will be used in game.");
+		
+		while((hoi.dartsRemaining(throwNum1, darts)!=0) && (hoi2.dartsRemaining(throwNum2, darts)!=0)){
+			throwD1(name1, hoi.dartsRemaining(throwNum1, darts));
+			throwNum1++;
+			a = hoi.score();
+			score1+=a;
+			System.out.println("You got a "+a+"! Your total score is "+score1);
+			System.out.println("Press Enter to Continue");
+			sc.nextLine();
+			System.out.println("\n\n\n");
+			throwD2(name2, hoi2.dartsRemaining(throwNum2, darts));
+			throwNum2++;
+			b = hoi2.score();
+			score2+=b;
+			System.out.println("You got a "+b+"! Your total score is "+score2+"\n\n\n");
+			System.out.println("Press Enter to Continue");
+			sc.nextLine();
+			System.out.println("\n\n\n");
+		}
+		hoi.whoWon(score1, score2, name1, name2);
+		System.out.print("Do You Want to Play Again? Enter the Number\n1) Yes\n2) No\n>> ");
+		playAgain = sc.nextInt();
+		}while(playAgain==1);
+	}
+
+	private static void throwD1(String name1, int remaining){
+		System.out.println(name1);
+		System.out.println("-------------------------------------------");
+		System.out.print("Darts: ");
+		for(int i=0;i<remaining;i++)
+			System.out.print("t");
+		System.out.print("\n");
+		System.out.println("Press Enter to Throw Dart.");
+		sc.nextLine();
+		
+	}
+	
+	private static void throwD2(String name2, int remaining){
+		System.out.println(name2);
+		System.out.println("-------------------------------------------");
+		System.out.print("Darts: ");
+		for(int i=0;i<remaining;i++)
+			System.out.print("t");
+		System.out.print("\n");
+		System.out.println("Press Enter to Throw Dart.");
+		sc.nextLine();
+	}
+}

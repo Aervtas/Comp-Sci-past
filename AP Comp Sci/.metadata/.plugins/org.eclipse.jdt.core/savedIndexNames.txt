@@ -1,0 +1,5 @@
+INDEX VERSION 1.127+C:\Users\Kevin Lin\Documents\C++ and Java\AP Comp Sci\.metadata\.plugins\org.eclipse.jdt.core
+1913858555.index
+2250130128.index
+2430643738.index
+1146591865.index

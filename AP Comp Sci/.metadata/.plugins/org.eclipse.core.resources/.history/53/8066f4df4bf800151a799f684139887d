@@ -1,0 +1,30 @@
+
+public class User {
+
+	public static void main(String[] args) {
+		Sorts hoi = new Sorts();
+		
+		int[] selTest = new int[6];
+		for(int i=0;i<6;i++){selTest[i] = (int)Math.random()*100;}
+		for(int i=0;i<6;i++){System.out.println(selTest[i]);}
+		System.out.println("Selection Sort:");
+		System.out.println("Original list: "+selTest);
+		System.out.println("Sorted list: "+hoi.selSort(selTest));
+		
+		for(int i=0;i<6;i++){selTest[i] = (int)Math.random()*100;}
+		System.out.println("Insertion Sort:");
+		System.out.println("Original list: "+selTest);
+		System.out.println("Sorted list: "+hoi.insSort(selTest));
+		
+		for(int i=0;i<6;i++){selTest[i] = (int)Math.random()*100;}
+		System.out.println("Merge Sort:");
+		System.out.println("Original list: "+selTest);
+		System.out.println("Sorted list: "+hoi.merSort(selTest));
+		
+		for(int i=0;i<6;i++){selTest[i] = (int)Math.random()*100;}
+		System.out.println("Quick Sort:");
+		System.out.println("Original list: "+selTest);
+		System.out.println("Sorted list: "+hoi.insSort(selTest));
+	}
+
+}
